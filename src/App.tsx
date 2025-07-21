@@ -1,10 +1,19 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
+import HangmanGamePage from './pages/HangmanGamePage';
+import StartupPage from './pages/StartupPage';
+import { HangmanGameProvider } from './contexts/HangmanGameProvider';
+
 function App() {
     return (
-        <>
-            <h1 className='text-3xl font-bold underline text-shadow-white'>
-                Hangman Game
-            </h1>
-        </>
+        <BrowserRouter>
+            <HangmanGameProvider>
+                <Routes>
+                    <Route path='/' element={<StartupPage />} />
+                    <Route path='/:lang/game' element={<HangmanGamePage />} />
+                    <Route path='*' element={<Navigate to='/' />} />
+                </Routes>
+            </HangmanGameProvider>
+        </BrowserRouter>
     );
 }
 
