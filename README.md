@@ -72,3 +72,8 @@ The application has been tested with the following environment:
 ---
 
 ## 🖼️ Screenshots
+
+![Image](https://github.com/user-attachments/assets/eaa4c1a1-8531-4684-8203-3d62b7435552)
+![Image](https://github.com/user-attachments/assets/a0e53752-9477-4a39-9fef-dcc754cf36af)
+![Image](https://github.com/user-attachments/assets/3076bb08-bc24-476c-bcbc-a9120d6e9955)
+![Image](https://github.com/user-attachments/assets/0cd0f63a-7d05-4f57-b3ca-d463ed881992)
