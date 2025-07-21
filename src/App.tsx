@@ -9,7 +9,7 @@ function App() {
             <HangmanGameProvider>
                 <Routes>
                     <Route path='/' element={<StartupPage />} />
-                    <Route path='/:lang/game' element={<HangmanGamePage />} />
+                    <Route path='/game' element={<HangmanGamePage />} />
                     <Route path='*' element={<Navigate to='/' />} />
                 </Routes>
             </HangmanGameProvider>

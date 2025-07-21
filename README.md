@@ -1,69 +1,74 @@
-# React + TypeScript + Vite
+# 🎯 Hangman – Classic Word Guessing Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Hangman** is a modern take on the classic word guessing game, built as a web
+application using the latest front-end technologies. The objective is simple:
+guess the hidden word one letter at a time before you run out of chances.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔧 Key Features:
 
-## Expanding the ESLint configuration
+-   🎮 Interactive and intuitive Hangman gameplay
+-   📜 Random word selection
+-   🔠 Visual feedback for correct/incorrect guesses
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+-   ⚛️ **React** – Frontend JavaScript library for building dynamic user
+    interfaces
+-   ⚡ **Vite** – Fast build tool and development server
+-   🎨 **Tailwind CSS** – Utility-first CSS framework for styling
+-   🔡 **TypeScript** – Strongly typed JavaScript for better code safety
+-   🔄 **React Router** – Client-side routing for single-page applications
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 💡 Requirements
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+⚠️ **Note:** The app requires an active internet connection to function
+correctly (it uses external services like Supabase).
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The application has been tested with the following environment:
+
+-   [Node.js](https://nodejs.org/) v23.9.0 (recommended LTS version)
+-   [npm](https://www.npmjs.com/) v11.1.0
+
+---
+
+## ⚙️ Installation
+
+1. Clone the repository and navigate to the project folder:
+
+    ```bash
+    git clone https://github.com/iamdrzazgowski/hangman-game.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd my-react-app
+    ```
+
+3. Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+4. Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+5. Open your browser and go to:
+
+    ```bash
+    http://localhost:5173
+    ```
+
+---
+
+## 🖼️ Screenshots

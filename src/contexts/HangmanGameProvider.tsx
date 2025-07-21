@@ -1,65 +1,121 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useState,
+    useCallback,
+} from 'react';
 import { MAX_WRONG_GUESSES, GAME_RESULT } from '../config/config';
+import type { HangmanGameContextType } from '../types/HangmanGameContext';
 
-const HangmanGameContext = createContext({});
+const HangmanGameContext = createContext<HangmanGameContextType | undefined>(
+    undefined
+);
 
 function HangmanGameProvider({ children }: { children: React.ReactNode }) {
     const [gameResult, setGameResult] = useState(GAME_RESULT.IN_PROGRESS);
     const [currentHealth, setCurrentHealth] = useState(MAX_WRONG_GUESSES);
-    const [language, setLanguage] = useState('english');
+    const [language, setLanguage] = useState('');
     const [randomWord, setRandomWord] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
-    useEffect(() => {
-        const fetchWord = async () => {
-            setIsLoading(true);
+    const fetchWord = useCallback(async (lang: string) => {
+        setIsLoading(true);
 
-            try {
-                const module = await import(`../data/words/${language}.json`, {
-                    assert: { type: 'json' },
-                });
-                const data: { words: string[] } = module.default;
-                const words: string[] = data.words;
+        try {
+            const module = await import(`../data/words/${lang}.json`, {
+                assert: { type: 'json' },
+            });
+            const data: { words: string[] } = module.default;
+            const words: string[] = data.words;
 
-                if (!words || words.length === 0) {
-                    throw new Error('No words found for the selected language');
-                }
-
-                setRandomWord(() => {
-                    const randomIndex = Math.floor(
-                        Math.random() * words.length
-                    );
-                    return words[randomIndex];
-                });
-
-                console.log(words);
-            } catch (error) {
-                console.error('Error fetching word:', error);
-            } finally {
-                setIsLoading(false);
+            if (!words || words.length === 0) {
+                throw new Error('No words found for the selected language');
             }
-        };
 
-        fetchWord();
-    }, [language]);
+            setRandomWord(() => {
+                const randomIndex = Math.floor(Math.random() * words.length);
+                return words[randomIndex];
+            });
+        } catch (error) {
+            console.error('Error fetching word:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (language) {
+            fetchWord(language);
+        }
+    }, [language, fetchWord]);
+
+    const guessLetter = useCallback(
+        (letter: string) => {
+            if (
+                gameResult !== GAME_RESULT.IN_PROGRESS ||
+                guessedLetters.includes(letter)
+            )
+                return;
+
+            setGuessedLetters((prev) => [...prev, letter]);
+
+            if (!randomWord.includes(letter)) {
+                setCurrentHealth((prev) => {
+                    const newHealth = prev - 1;
+                    if (newHealth <= 0) {
+                        setGameResult(GAME_RESULT.LOST);
+                    }
+                    return newHealth;
+                });
+            } else {
+                const allGuessed = randomWord
+                    .split('')
+                    .every(
+                        (l) =>
+                            l === ' ' ||
+                            guessedLetters.includes(l) ||
+                            l === letter
+                    );
+
+                if (allGuessed) {
+                    setGameResult(GAME_RESULT.WON);
+                }
+            }
+        },
+        [randomWord, guessedLetters, gameResult]
+    );
+
+    const resetGame = useCallback(() => {
+        setGameResult(GAME_RESULT.IN_PROGRESS);
+        setCurrentHealth(MAX_WRONG_GUESSES);
+        setGuessedLetters([]);
+        setRandomWord('');
+        if (language) {
+            fetchWord(language);
+        } else {
+            setRandomWord('');
+        }
+    }, [language, fetchWord]);
+
+    const changeLanguage = useCallback((newLanguage: string) => {
+        setLanguage(newLanguage);
+    }, []);
 
     return (
         <HangmanGameContext.Provider
             value={{
                 gameResult,
-                setGameResult,
                 currentHealth,
-                setCurrentHealth,
                 language,
-                setLanguage,
+                changeLanguage,
                 randomWord,
-                setRandomWord,
                 isLoading,
-                setIsLoading,
                 guessedLetters,
-                setGuessedLetters,
+                resetGame,
+                guessLetter,
             }}>
             {children}
         </HangmanGameContext.Provider>
