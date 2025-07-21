@@ -1,4 +1,3 @@
-import React from 'react';
 import { GAME_RESULT } from '../config/config';
 
 export default function GuessWord({

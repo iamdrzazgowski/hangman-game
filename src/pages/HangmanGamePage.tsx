@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useHangmanGame } from '../contexts/HangmanGameProvider';
 import { useNavigate } from 'react-router';
 import { GAME_RESULT } from '../config/config';
