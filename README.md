@@ -73,7 +73,7 @@ The application has been tested with the following environment:
 
 ## 🖼️ Screenshots
 
-![Image](https://github.com/user-attachments/assets/eaa4c1a1-8531-4684-8203-3d62b7435552)
-![Image](https://github.com/user-attachments/assets/a0e53752-9477-4a39-9fef-dcc754cf36af)
-![Image](https://github.com/user-attachments/assets/3076bb08-bc24-476c-bcbc-a9120d6e9955)
-![Image](https://github.com/user-attachments/assets/0cd0f63a-7d05-4f57-b3ca-d463ed881992)
+![Image](https://github.com/user-attachments/assets/4d4ee190-b5de-4aab-b3b3-87c253f1ec4c)
+![Image](https://github.com/user-attachments/assets/6bfaf7a0-5dd9-46ee-b8fe-660943b8c0d5)
+![Image](https://github.com/user-attachments/assets/ffed62ad-d048-4188-9a07-ca534be2222f)
+![Image](https://github.com/user-attachments/assets/1a4daaf5-ab1b-4152-8726-8331808f6bb6)
