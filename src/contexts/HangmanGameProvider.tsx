@@ -25,10 +25,11 @@ function HangmanGameProvider({ children }: { children: React.ReactNode }) {
         setIsLoading(true);
 
         try {
-            const module = await import(`../data/words/${lang}.json`, {
-                assert: { type: 'json' },
-            });
-            const data: { words: string[] } = module.default;
+            const res = await fetch(`/data/words/${lang}.json`);
+
+            if (!res.ok) throw new Error('Failed to fetch words');
+
+            const data: { words: string[] } = await res.json();
             const words: string[] = data.words;
 
             if (!words || words.length === 0) {
